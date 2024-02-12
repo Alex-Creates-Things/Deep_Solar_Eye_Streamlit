@@ -5,7 +5,7 @@ st.header('About DeepSolarEye')
 st.header(':mostly_sunny: Solar Panel Power Loss Estimator :mostly_sunny:')
 
 st.write('DeepSolarEye investigating the effects that soiling has on the power loss for solar panels.  \n\
-    An RGB image of a solar panel combined with time and irradience inut predicts the power loss  \n\
+    An RGB image of a solar panel combined with time and irradiance input predicts the power loss  \n\
     The model has been trained on data collected by Cornell University and is based on the following research paper:  \n\
 \n\
     \n\
