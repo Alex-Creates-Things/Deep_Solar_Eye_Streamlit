@@ -32,7 +32,7 @@ if uploaded_file is not None:
 
     if response.status_code == 200:
         st.write("	:crystal_ball:")
-        st.write("Our model predicts the power outpt to be:", response.json())
+        st.write("Our model predicts the power output to be:", response.json())
     else:
         st.write("  :construction:")
         st.write("Failed to get prediction result")
