@@ -8,7 +8,16 @@ from PIL import Image
 #API url
 #url=os.getenv('API_URL')
 
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg"])
+
+#App title/ description
+st.header(':mostly_sunny: Solar Panel Power Loss Estimator :mostly_sunny:')
+
+
+st.markdown('####')
+
+uploaded_file = st.file_uploader("Select you solar panel image to be analyzed...	:frame_with_picture:", type=["jpg"])
+
+
 
 
 if uploaded_file is not None:
@@ -22,6 +31,8 @@ if uploaded_file is not None:
 
 
     if response.status_code == 200:
-        st.write("Prediction result:", response.json())
+        st.write("	:crystal_ball:")
+        st.write("Our model predicts the power outpt to be:", response.json())
     else:
+        st.write("  :construction:")
         st.write("Failed to get prediction result")
