@@ -1,8 +1,9 @@
 import streamlit as st
 import requests
-from io import BytesIO
+from io import StringIO, BytesIO
 from PIL import Image
-
+import ipdb
+import base64
 
 
 #API url
@@ -25,8 +26,19 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image, caption='Uploaded Image', use_column_width=True)
 
+    #ipdb.set_trace()
     # Make a POST request to FastAPI endpoint
-    response = requests.post("http://127.0.0.1:8000/predict", files={"image": uploaded_file})
+    # Convert image to byte array
+
+    # Convert image to byte array
+    byte_arr = BytesIO()
+    image.save(byte_arr, format='JPEG')
+    byte_arr = byte_arr.getvalue()
+
+    # Prepare data to send to FastAPI endpoint
+    file = {"file": (uploaded_file.name, byte_arr, "image/jpeg")}
+
+    response = requests.post("http://127.0.0.1:8000/predict", files=file)
     #response = requests.get(url+ "/")
 
 
