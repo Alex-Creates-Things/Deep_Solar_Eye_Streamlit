@@ -32,13 +32,13 @@ if uploaded_file is not None:
     with st.spinner('Calculating power loss...'):
         time.sleep(2)
     if response.status_code == 200:
-        st.write("	:crystal_ball:")
+        st.header("	:crystal_ball:")
         prediction_result = response.json()
         percent_loss = round(float(prediction_result['power_loss']) * 100, 2)
         if percent_loss < 0:
             percent_loss = 0
-        st.write("Power Loss Prediction:")
-        st.write(f"Power Loss: {percent_loss}%")
+        st.header("Power Loss Prediction:")
+        st.header(f"Power Loss: {percent_loss}%")
     else:
-        st.write("  :construction:")
-        st.write("Failed to get prediction result")
+        st.header("  :construction:")
+        st.header("Failed to get prediction result")
