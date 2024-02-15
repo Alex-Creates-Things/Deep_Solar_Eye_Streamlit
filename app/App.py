@@ -28,15 +28,15 @@ if uploaded_file is not None:
     file = {"file": (uploaded_file.name, byte_arr, "image/jpeg")}
 
     response = requests.post("https://deep-solar-eye-xzsdeienxq-ew.a.run.app/predict", files=file)
-    with st.spinner('Predicting Power Loss')
-    if response.status_code == 200:
-        st.write("	:crystal_ball:")
-        prediction_result = response.json()
-        percent_loss = round(float(prediction_result['power_loss']) * 100, 2)
-        if percent_loss < 0:
+    with st.spinner('Predicting Power Loss'):
+        if response.status_code == 200:
+            st.write("	:crystal_ball:")
+            prediction_result = response.json()
+            percent_loss = round(float(prediction_result['power_loss']) * 100, 2)
+            if percent_loss < 0:
             percent_loss = 0
-        st.write("Power Loss Prediction:")
-        st.write(f"Power Loss: {percent_loss}%")
-    else:
-        st.write("  :construction:")
-        st.write("Failed to get prediction result")
+            st.write("Power Loss Prediction:")
+            st.write(f"Power Loss: {percent_loss}%")
+        else:
+            st.write("  :construction:")
+            st.write("Failed to get prediction result")
