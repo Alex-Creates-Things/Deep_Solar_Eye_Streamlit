@@ -28,7 +28,7 @@ if uploaded_file is not None:
     file = {"file": (uploaded_file.name, byte_arr, "image/jpeg")}
 
     response = requests.post("https://deep-solar-eye-xzsdeienxq-ew.a.run.app/predict", files=file)
-
+    with st.spinner('Predicting Power Loss')
     if response.status_code == 200:
         st.write("	:crystal_ball:")
         prediction_result = response.json()
