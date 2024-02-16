@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import time
 from io import BytesIO
 from PIL import Image
 import numpy as np
@@ -29,7 +30,9 @@ if uploaded_file is not None:
     file = {"file": (uploaded_file.name, byte_arr, "image/jpeg")}
 
     response = requests.post("https://mask-image-linux-xzsdeienxq-ew.a.run.app/predict", files=file)
-
+    with st.spinner('Calculating power loss...'):
+        time.sleep(2)
+        
     if response.status_code == 200:
         #ipdb.set_trace()
         if response.json()['inferred_img']:
@@ -43,17 +46,16 @@ if uploaded_file is not None:
 
         response_regression = requests.post("https://deep-solar-eye-linux-xzsdeienxq-ew.a.run.app/predict", files=file)
         if response_regression.status_code == 200:
-            st.write("	:crystal_ball:")
+            st.header("	:crystal_ball:")
             prediction_result = response_regression.json()
             percent_loss = round(float(prediction_result['power_loss']) * 100, 2)
             if percent_loss < 0:
                 percent_loss = 0
-            st.write("Power Loss Prediction:")
-            st.write(f"Power Loss: {percent_loss}%")
+            st.header("Power Loss Prediction:")
+            st.header(f"Power Loss: {percent_loss}%")
 
         else:
-            st.write("No solar panel detected. Consider changing the angle or lighting.")
+            st.header("  :construction:")
+            st.header("No solar panel detected. Consider changing the angle or lighting.")
 
-    else:
-        st.write("  :construction:")
-        st.write("Failed to get prediction result")
+
