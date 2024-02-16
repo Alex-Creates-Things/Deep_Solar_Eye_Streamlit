@@ -5,7 +5,7 @@ from io import BytesIO
 from PIL import Image
 import numpy as np
 import base64
-import ipdb
+
 
 #App title/ description
 st.header(':mostly_sunny: Solar Panel Power Loss Estimator :mostly_sunny:')
@@ -34,7 +34,7 @@ if uploaded_file is not None:
         time.sleep(2)
         
     if response.status_code == 200:
-        #ipdb.set_trace()
+    
         if response.json()['inferred_img']:
             # get response and convert from base64 to byte stream
             image_base64 = response.json()['inferred_img']
