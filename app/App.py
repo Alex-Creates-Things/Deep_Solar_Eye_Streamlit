@@ -28,11 +28,12 @@ if uploaded_file is not None:
 
     # Prepare data to send to FastAPI endpoint
     file = {"file": (uploaded_file.name, byte_arr, "image/jpeg")}
-
-    response = requests.post("https://mask-image-linux-xzsdeienxq-ew.a.run.app/predict", files=file)
     with st.spinner('Calculating power loss...'):
         time.sleep(2)
         
+    response = requests.post("https://mask-image-linux-xzsdeienxq-ew.a.run.app/predict", files=file)
+    
+    
     if response.status_code == 200:
     
         if response.json()['inferred_img']:
