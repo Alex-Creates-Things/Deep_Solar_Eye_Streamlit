@@ -28,7 +28,7 @@ if uploaded_file is not None:
 
     # Prepare data to send to FastAPI endpoint
     file = {"file": (uploaded_file.name, byte_arr, "image/jpeg")}
-    with st.spinner('Calculating power loss...'):
+    with st.spinner('Analyzing image...'):
         time.sleep(2)
         
     response = requests.post("https://mask-image-linux-xzsdeienxq-ew.a.run.app/predict", files=file)
